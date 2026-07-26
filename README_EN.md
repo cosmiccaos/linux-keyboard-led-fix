@@ -33,7 +33,7 @@ curl -sSL https://raw.githubusercontent.com/cosmiccaos/linux-keyboard-led-fix/ma
 ```
 
 Or alternatively, to set everything up individually;
-## 🚀 Step-by-Step Installation
+## 2. Step-by-Step Installation
 
 The installation process is identical across **Arch Linux / SteamOS / Manjaro** and **Ubuntu / Debian / Pop!_OS / Linux Mint**.
 
