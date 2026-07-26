@@ -26,8 +26,13 @@ This repository provides a lightweight **Systemd LED Keeper Daemon** that operat
 
 The service checks the Scroll Lock LED state in real-time (every 200ms). When `NumLock` turns off the illumination, the daemon automatically forces the LED brightness back to `1` (ON) in milliseconds—completely seamlessly to the user.
 
----
+## 1. Single-command installation:
 
+```
+curl -sSL https://raw.githubusercontent.com/cosmiccaos/linux-keyboard-led-fix/main/install.sh | sudo bash
+```
+
+Or alternatively, to set everything up individually;
 ## 🚀 Step-by-Step Installation
 
 The installation process is identical across **Arch Linux / SteamOS / Manjaro** and **Ubuntu / Debian / Pop!_OS / Linux Mint**.
