@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[🇹🇷 Türkçe Dokümantasyon için Tıklayın](README.md)
+[🇹🇷 Türkçe Dokümantasyon için Tıklayın](README_TR.md)
 
 A lightweight `systemd` daemon solution to keep keyboard backlights (specifically for **Piranha 2345** and other budget LED keyboards) permanently turned on in **Linux**, even when toggling `NumLock` or reconnecting the device.
 
