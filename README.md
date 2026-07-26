@@ -53,9 +53,14 @@ Bu proje, masaüstü ortamından bağımsız olarak doğrudan Linux çekirdeğin
 
 Servis, milisaniyeler seviyesinde Scroll Lock LED hattının durumunu kontrol eder. `NumLock` tuşuna basılıp ışık kesildiği an, kullanıcı fark bile etmeden LED hattını tekrar `1` (açık) konumuna getirir.
 
----
+## 1. Tek komutla kurulum: 
 
-## 🚀 Adım Adım Kurulum
+```
+curl -sSL https://raw.githubusercontent.com/cosmiccaos/linux-keyboard-led-fix/main/install.sh | sudo bash
+```
+
+Ya da alternatif olarak her şeyi tek tek ayarlamak için;
+## 2. Adım Adım Kurulum
 
 Hem **Arch Linux / SteamOS / Manjaro** hem de **Ubuntu / Debian / Pop!_OS / Linux Mint** sistemlerinde kurulum adımları birebir aynıdır.
 
