@@ -62,6 +62,8 @@ Terminali açın ve betik dosyasını oluşturun:
 sudo nano /usr/local/bin/led-keeper.sh
 ```
 
+Açılan ekrana alttaki betiği yapıştırın.
+
 ```
 #!/bin/bash
 while true; do
