@@ -3,7 +3,7 @@ Linux sistemlerde (Arch, Ubuntu) Piranha 2345 ve benzeri klavyelerin LED/ışık
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[🇬🇧Click here for English documentation](README_EN.md)
+[🇬🇧Click here for English documentation](README_.md)
 
 ## 🔍 Hatanın Sebebi ve Teknik Detayı
 
