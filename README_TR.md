@@ -28,7 +28,7 @@ Servis, milisaniyeler seviyesinde Scroll Lock LED hattının durumunu kontrol ed
 - Masaüstü ortamı veya pencere yöneticisinden bağımsız çalışır.
 - NumLock tuşu ışığı bir daha asla söndüremez.
 
-
+***Nasıl urulur***
 ## 1. Tek komutla kurulum: 
 
 ```
