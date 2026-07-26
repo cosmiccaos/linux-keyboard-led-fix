@@ -1,6 +1,10 @@
 # linux-keyboard-led-fix
 Linux sistemlerde (Arch, Ubuntu) Piranha 2345 ve benzeri klavyelerin LED/ışıklandırma sorununu çözen otomatik daemon servisi
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+[🇬🇧Click here for English documentation](README_EN.md)
+
 ## 🔍 Hatanın Sebebi ve Teknik Detayı
 
 Piranha 2345 ve benzeri bütçe dostu oyuncu klavyelerinde ışıklandırma sistemi (RGB/LED) standart bir açma/kapama tuşu yerine donanımsal olarak **Scroll Lock (`SCLK`)** hattına bağlanmıştır.
