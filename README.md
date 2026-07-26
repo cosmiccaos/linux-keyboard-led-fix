@@ -6,11 +6,10 @@
 
 A lightweight `systemd` daemon solution to keep keyboard backlights (specifically for **Piranha 2345** and other budget LED keyboards) permanently turned on in **Linux**, even when toggling `NumLock` or reconnecting the device.
 
----
 
 ## 🔍 Understanding the Issue (Problem Overview)
 
-On budget gaming keyboards like the Piranha 2345, the RGB/LED illumination circuit is hardwired to the **Scroll Lock (`SCLK`)** key line instead of a dedicated controller. Under Linux, this leads to two major issues:
+On budget gaming keyboards like the **Piranha 2345**, the RGB/LED illumination circuit is hardwired to the **Scroll Lock (`SCLK`)** key line instead of a dedicated controller. Under Linux, this leads to two major issues:
 
 1. **Disabled Scroll Lock by Default:**  
    Unlike Windows, the Linux kernel and display servers (X11 / Wayland) do not trigger the `Scroll Lock` LED signal out-of-the-box. As a result, the keyboard stays unlit when plugged in.
@@ -18,14 +17,16 @@ On budget gaming keyboards like the Piranha 2345, the RGB/LED illumination circu
 2. **NumLock Hardware Firmware Reset:**  
    The low-cost microcontroller inside the keyboard resets the USB LED data bus (`sysfs` interface) whenever the `NumLock` key is toggled. This means any manual command (like `xset` or `setleds`) gets instantly overridden, turning off the lights as soon as `NumLock` is pressed.
 
----
-
 ## 💡 The Solution
 
 This repository provides a lightweight **Systemd LED Keeper Daemon** that operates beneath the desktop environment by monitoring the Linux kernel's LED interface (`/sys/class/leds/input*::scrolllock/brightness`) directly.
 
-The service checks the Scroll Lock LED state in real-time (every 200ms). When `NumLock` turns off the illumination, the daemon automatically forces the LED brightness back to `1` (ON) in milliseconds—completely seamlessly to the user.
+The service checks the Scroll Lock LED state in real-time (every 200ms). When `NumLock` turns off the illumination, the daemon automatically forces the LED brightness back to `1` (ON) in milliseconds—completely seamlessly to the user:
+- No need to enter `sudo` passwords.
+- Desktop environment and window manager independent.
+- Prevents `NumLock` from ever disabling the backlight again.
 
+***How to set-up:***
 ## 1. Single-command installation:
 
 ```
