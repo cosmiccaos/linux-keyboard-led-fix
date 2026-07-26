@@ -5,53 +5,29 @@ Linux sistemlerde (Arch, Ubuntu) Piranha 2345 ve benzeri klavyelerin LED/ışık
 
 [🇬🇧Click here for English documentation](README_.md)
 
-## 🔍 Hatanın Sebebi ve Teknik Detayı
+# ⌨️ Linux Otomatik Scroll Lock / LED Sabitleyici (LED Keeper)
 
-Piranha 2345 ve benzeri bütçe dostu oyuncu klavyelerinde ışıklandırma sistemi (RGB/LED) standart bir açma/kapama tuşu yerine donanımsal olarak **Scroll Lock (`SCLK`)** hattına bağlanmıştır.
+**Piranha 2345** ve benzeri bütçe dostu oyuncu klavyelerinin Linux işletim sistemlerinde yaşanan ışıklandırma (LED) ve `NumLock` çakışma sorununu çözen hafif bir `systemd` arka plan servisidir.
 
-Linux işletim sistemlerinde bu durum **iki temel soruna** yol açar:
+## 🔍 Sorun Nedir? (Teknik Detay)
+
+Piranha 2345 ve ucuz mikrodenetleyiciye (firmware) sahip klavyelerde ışıklandırma sistemi özel bir tuş yerine donanımsal olarak **Scroll Lock (`SCLK`)** hattına bağlanmıştır. Linux işletim sisteminde bu durum iki temel probleme yol açar:
 
 1. **Varsayılan Scroll Lock Pasifliği:**  
-   Linux çekirdeği (kernel) ve masaüstü ortamları (X11 / Wayland), Windows'un aksine `Scroll Lock` tuşunun LED sinyalini varsayılan olarak tetiklemez. Bu yüzden klavye takıldığında ışıklar kapalı gelir.
+   Linux çekirdeği (Kernel) ve masaüstü ortamları (X11 / Wayland), Windows'un aksine `Scroll Lock` tuşunun LED sinyalini varsayılan olarak tetiklemez. Bu yüzden klavye takıldığında ışıklar kapalı gelir.
 
-2. **NumLock / Donanım Sinyal Sıfırlaması (Firmware Reset):**  
-   Klavyenin içindeki ucuz mikrodenetleyici (firmware), kullanıcının `NumLock` tuşuna her basışında veya sistemden bir durum değişimi sinyali aldığında USB LED veri yolunu (sysfs hattını) tamamen sıfırlar. Bu durum, `xset` veya `setleds` gibi standart komutlarla yakılan ışığın **NumLock'a basıldığı an anında sönmesine** neden olur.
+2. **NumLock Donanımsal Sıfırlaması (Firmware Reset):**  
+   Klavyenin içindeki firmware, `NumLock` tuşuna her basıldığında veya sistemden bir durum değişimi sinyali aldığında USB LED veri yolunu (`sysfs` hattını) tamamen sıfırlar. Bu durum, `xset` veya `setleds` gibi standart komutlarla yakılan ışığın **NumLock'a basıldığı an sönmesine** neden olur.
 
----
+## 💡 Nasıl Çözüyoruz?
 
-### 💡 Geliştirilen Çözüm
-
-Bu proje, masaüstü ortamından (X11/Wayland) bağımsız olarak doğrudan Linux çekirdeğinin LED arayüzünü (`/sys/class/leds/input*::scrolllock/brightness`) izleyen hafif bir **Systemd Arka Plan Servisi (LED Keeper Daemon)** çalıştırır.
+Bu proje, masaüstü ortamından (X11/Wayland) bağımsız olarak doğrudan Linux çekirdeğinin LED arayüzünü (`/sys/class/leds/input*::scrolllock/brightness`) arka planda izleyen hafif bir **Systemd Arka Plan Servisi (LED Keeper Daemon)** çalıştırır.
 
 Servis, milisaniyeler seviyesinde Scroll Lock LED hattının durumunu kontrol eder. `NumLock` tuşuna basılıp ışık kesildiği an, kullanıcı fark bile etmeden LED hattını tekrar `1` (açık) durumuna getirir. Böylece:
 - Sudo şifresi girmeye gerek kalmaz.
 - Masaüstü ortamı veya pencere yöneticisinden bağımsız çalışır.
 - NumLock tuşu ışığı bir daha asla söndüremez.
 
-
-# ⌨️ Linux Otomatik Scroll Lock / LED Sabitleyici (LED Keeper)
-
-**Piranha 2345** ve benzeri bütçe dostu oyuncu klavyelerinin Linux işletim sistemlerinde yaşanan ışıklandırma (LED) ve `NumLock` çakışma sorununu çözen hafif bir `systemd` arka plan servisidir.
-
----
-
-## 🔍 Hatayı Tanıyalım: Sorun Nedir ve Neden Kaynaklanır?
-
-Piranha 2345 gibi klavyelerde ışıklandırma sistemi dedicated (özel) bir tuş yerine donanımsal olarak **Scroll Lock (`SCLK`)** hattına bağlanmıştır. Linux tarafında bu durum iki temel probleme yol açar:
-
-1. **Varsayılan Scroll Lock Pasifliği:**  
-   Linux çekirdeği (Kernel) ve masaüstü ortamları (X11 / Wayland), Windows'un aksine `Scroll Lock` tuşunun LED sinyalini varsayılan olarak tetiklemez. Bu yüzden klavye bilgisayara takıldığında ışıklar kapalı gelir.
-
-2. **NumLock Donanımsal Sıfırlaması (Firmware Reset):**  
-   Klavyenin içindeki mikrodenetleyici (firmware), `NumLock` tuşuna her basıldığında USB LED veri yolunu (`sysfs` hattını) sıfırlar. Bu durum, `xset` veya `setleds` gibi komutlarla yakılan ışığın **NumLock'a basıldığı an sönmesine** neden olur.
-
----
-
-## 💡 Nasıl Çözüyoruz?
-
-Bu proje, masaüstü ortamından bağımsız olarak doğrudan Linux çekirdeğinin LED arayüzünü (`/sys/class/leds/input*::scrolllock/brightness`) arka planda izleyen minik bir **Systemd LED Bekçisi (LED Keeper)** çalıştırır.
-
-Servis, milisaniyeler seviyesinde Scroll Lock LED hattının durumunu kontrol eder. `NumLock` tuşuna basılıp ışık kesildiği an, kullanıcı fark bile etmeden LED hattını tekrar `1` (açık) konumuna getirir.
 
 ## 1. Tek komutla kurulum: 
 
